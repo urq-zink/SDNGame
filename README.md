@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="SDNGame Logo" width="200"/>
+  <img src="assets/splash2.png" alt="SDNGame Logo" width="200"/>
 </p>
 
 # SDNGame - 2D Game Framework
