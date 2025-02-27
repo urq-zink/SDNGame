@@ -1,0 +1,14 @@
+{
+    "player_idle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 32,
+        "Height": 32
+    },
+    "player_run": {
+        "X": 32,
+        "Y": 0,
+        "Width": 32,
+        "Height": 32
+    }
+}

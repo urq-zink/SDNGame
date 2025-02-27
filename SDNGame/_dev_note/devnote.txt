@@ -1,0 +1,59 @@
+﻿[x] make window (gl or glfw) (note from future: fuck that glfw, those binding were buggy as fuck, switched to gl based window gen)
+[x] implement rendering unit (buffer, vertex array, shader)
+[x] make basic shape (hello world triangle)
+[x] implement quad shape
+[x] add texture drawing (on triangle, quad and other primitive shape)
+[x] add code abstraction (based on silk .net demo) 
+[] add xml comments 
+[x] implement sprite rendering system (sprite batch, sprite properties, etc)
+[x] use separate sprite state class for sprite properties instead of built-in properties manager due to 'cOdE bLoCk' 
+[x] steal camera class from silk .net demo for the sprite renderer
+[x] fix "matrix4 shader uniform not found" error
+[x] refactor camera class (make it 2d since the code that was stolen from silk .net demo is for 3d)
+[x] fix viewport zoom position below (0, 0)
+[x] fix viewport buggy positioning and rotation
+[x] update camera2d method name typo
+[x] refactor camera translation method
+[x] fix viewport rotate viewport position to screen center (fixed by chatgpt, and yes you heard that shit right, i cheated)
+[x] prototype wave player (base on silk .net demo)
+[x] refactor spritestate (fixing bug related to camera2d)
+[x] refactor spritebatch (fixing bug related to camera2d)
+[x] remove hardcoded buffer/vertex_arr generation on sprite renderer (will use the one from rendering unit instead)
+[x] bounce basic shaders to legacy shader unit (since we no longer use them and will only keep as reference)
+[x] add dedicated renderer (dgpu) support (only nvidia for now)
+[x] add amd dedicated renderer support
+[x] denesting graphics initializer (factoring issues)
+[] test dedicated renderer compatibility (amd gpu for testing is demanding...)
+[] add intel dedicated renderer support (or shouldn't? like the intel gpu are mostly igpu so why would implement a dgpu support for it?)
+[x] implement a cool splash screen on startup
+[x] fix non-transparent splash window (change api binding to win32 perhaps?)
+[x] animating splash screen with fade in/out fx
+[] abandon splash fade fx (ps: nah i fixed it)
+[x] refactor wave player (add abstraction)
+[x] implement audio mixer
+[x] fix null wave player list (declare nullable)
+[x] implement simple input manager
+[x] update input manager method name
+[x] add key binding processor
+[x] implement entity component system (like unity)
+[x] make a simple game (human vs bounce ball kinda shit tho)
+[x] implement ttf/otf text renderer
+[x] fix unproper text renderer crop
+[x] refactor code base structure
+[x] implement custom multimedia game timer
+[x] refactor game timer and fix failed winmm dlls import
+[x] implement post-processing effect
+[x] fix post-processing effect low density bug
+[x] fix font rendering truncation bug
+[x] implement tween (easing functions) class
+[x] implement scene manager
+[x] implement scene transition (fade, zoom, etc)
+[x] advanced scene transition (fancier version of previous transition effects)
+[x] improve shape renderer corner calculation
+[x] fix line shape render faulty vertex offset
+[x] create some demo scene
+[X] implement ui elements
+[x] add gamepad/joystick input support
+[x] refactor input manager (add support + key/input mapper)
+[x] add mp3/ogg audio format support
+[x] refactor audio entire audio namespace
