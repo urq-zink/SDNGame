@@ -1,4 +1,4 @@
-﻿using SDNGame.Input;
+using SDNGame.Input;
 using SDNGame.Rendering.Fonts;
 using SDNGame.Rendering.Sprites;
 using SDNGame.Rendering.Textures;
@@ -148,36 +148,36 @@ namespace SDNGame.Core.GameScenes
                 {
                     case 0: // Rotating and scaling flTexture
                         sprite.Rotation = MathF.Sin(time) * MathF.PI; // Rotate between -π and π
-                        float scale1 = 1f + MathF.Sin(time * 1.5f) * 0.3f; // Scale between 0.7 and 1.3
+                        float scale1 = 1f + (MathF.Sin(time * 1.5f) * 0.3f); // Scale between 0.7 and 1.3
                         sprite.Size = new Vector2(100, 100) * scale1;
                         break;
 
                     case 1: // Moving and scaling shieldTexture
                         float moveOffset = MathF.Sin(time * 0.8f) * 50f; // Move ±50 units
-                        sprite.Position = new Vector2(ScreenWidth / 2 + 200, ScreenHeight / 2 - 100) + new Vector2(moveOffset, moveOffset);
-                        float scale2 = 1f + MathF.Cos(time) * 0.2f; // Scale between 0.8 and 1.2
+                        sprite.Position = new Vector2((ScreenWidth / 2) + 200, (ScreenHeight / 2) - 100) + new Vector2(moveOffset, moveOffset);
+                        float scale2 = 1f + (MathF.Cos(time) * 0.2f); // Scale between 0.8 and 1.2
                         sprite.Size = new Vector2(120, 120) * scale2;
                         break;
 
                     case 2: // Mouse-tracking collectibleTexture
                         sprite.Position = mousePosition;
                         sprite.Rotation = time * 2f; // Continuous rotation
-                        float scale3 = 1f + (float)Math.Sin(time * 2f) * 0.2f; // Scale between 0.8 and 1.2
+                        float scale3 = 1f + ((float)Math.Sin(time * 2f) * 0.2f); // Scale between 0.8 and 1.2
                         sprite.Size = new Vector2(80, 80) * scale3;
                         break;
 
                     case 3: // Tinted collectibleTexture (yellow)
-                        sprite.Position = new Vector2(ScreenWidth / 2 - 150, ScreenHeight / 2 + 100) +
+                        sprite.Position = new Vector2((ScreenWidth / 2) - 150, (ScreenHeight / 2) + 100) +
                                          new Vector2(MathF.Cos(time) * 30f, MathF.Sin(time * 1.2f) * 30f);
                         sprite.Rotation = -time;
-                        sprite.Size = new Vector2(60, 60) * (1f + MathF.Sin(time * 1.3f) * 0.15f);
+                        sprite.Size = new Vector2(60, 60) * (1f + (MathF.Sin(time * 1.3f) * 0.15f));
                         break;
 
                     case 4: // Tinted collectibleTexture (purple)
-                        sprite.Position = new Vector2(ScreenWidth / 2 + 150, ScreenHeight / 2 + 100) +
+                        sprite.Position = new Vector2((ScreenWidth / 2) + 150, (ScreenHeight / 2) + 100) +
                                          new Vector2(MathF.Sin(time * 1.1f) * 30f, MathF.Cos(time) * 30f);
                         sprite.Rotation = time * 1.5f;
-                        sprite.Size = new Vector2(60, 60) * (1f + MathF.Cos(time * 1.4f) * 0.15f);
+                        sprite.Size = new Vector2(60, 60) * (1f + (MathF.Cos(time * 1.4f) * 0.15f));
                         break;
                 }
             }
