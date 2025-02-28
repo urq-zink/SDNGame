@@ -1,4 +1,4 @@
-﻿using SDNGame.Input;
+using SDNGame.Input;
 using SDNGame.Physics;
 using SDNGame.Rendering.Fonts;
 using SDNGame.Rendering.Shapes;
@@ -305,7 +305,7 @@ namespace SDNGame.Core.GameScenes
                         ShapeRenderer.DrawCircle(collider.Position, collider.Radius, color, true);
                         break;
                     case Collider.ShapeType.Rectangle:
-                        Vector2 rectPos = collider.Position - collider.Size * 0.5f;
+                        Vector2 rectPos = collider.Position - (collider.Size * 0.5f);
                         ShapeRenderer.DrawRectangle(rectPos, collider.Size, color, true);
                         break;
                     case Collider.ShapeType.Polygon:
@@ -327,10 +327,10 @@ namespace SDNGame.Core.GameScenes
                         float thickness = 10f;
                         Vector2[] vertices = new[]
                         {
-                            collider.Position + perpendicular * thickness / 2,
-                            collider.Position - perpendicular * thickness / 2,
-                            collider.EndPoint - perpendicular * thickness / 2,
-                            collider.EndPoint + perpendicular * thickness / 2
+                            collider.Position + (perpendicular * thickness / 2),
+                            collider.Position - (perpendicular * thickness / 2),
+                            collider.EndPoint - (perpendicular * thickness / 2),
+                            collider.EndPoint + (perpendicular * thickness / 2)
                         };
                         ShapeRenderer.DrawPolygon(vertices, color, true);
                         break;
@@ -344,7 +344,7 @@ namespace SDNGame.Core.GameScenes
                         ShapeRenderer.DrawCircle(collider.Position, collider.Radius, color, false);
                         break;
                     case Collider.ShapeType.Rectangle:
-                        Vector2 rectPos = collider.Position - collider.Size * 0.5f;
+                        Vector2 rectPos = collider.Position - (collider.Size * 0.5f);
                         ShapeRenderer.DrawRectangle(rectPos, collider.Size, color, false);
                         break;
                     case Collider.ShapeType.Polygon:
