@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Numerics;
 using Silk.NET.OpenGL;
 using SDNGame.Camera;
@@ -211,7 +211,7 @@ namespace SDNGame.Rendering.Sprites
         {
             if (MathF.Abs(rotation) < float.Epsilon)
             {
-                Vector2 topLeft = position - size * origin;
+                Vector2 topLeft = position - (size * origin);
                 _cornerCache[0] = topLeft;                               // Top-left
                 _cornerCache[1] = topLeft + new Vector2(size.X, 0);      // Top-right
                 _cornerCache[2] = topLeft + size;                        // Bottom-right
@@ -232,8 +232,8 @@ namespace SDNGame.Rendering.Sprites
                 {
                     float x = localVertices[i].X;
                     float y = localVertices[i].Y;
-                    float rx = x * cos - y * sin;
-                    float ry = x * sin + y * cos;
+                    float rx = (x * cos) - (y * sin);
+                    float ry = (x * sin) + (y * cos);
                     _cornerCache[i] = position + new Vector2(rx, ry);
                 }
             }
@@ -249,7 +249,7 @@ namespace SDNGame.Rendering.Sprites
 
             for (int i = 0; i < 4; i++)
             {
-                int offset = vertexOffset + i * FloatsPerVertex;
+                int offset = vertexOffset + (i * FloatsPerVertex);
                 _vertexData[offset + 0] = _cornerCache[i].X;
                 _vertexData[offset + 1] = _cornerCache[i].Y;
                 _vertexData[offset + 2] = uvs[i].X;
