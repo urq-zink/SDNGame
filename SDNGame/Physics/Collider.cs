@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 
 namespace SDNGame.Physics
 {
@@ -301,10 +301,10 @@ namespace SDNGame.Physics
 
         private static bool RectangleVsRectangle(Collider r1, Collider r2)
         {
-            Vector2 r1Min = r1.Position - r1.Size * 0.5f;
-            Vector2 r1Max = r1.Position + r1.Size * 0.5f;
-            Vector2 r2Min = r2.Position - r2.Size * 0.5f;
-            Vector2 r2Max = r2.Position + r2.Size * 0.5f;
+            Vector2 r1Min = r1.Position - (r1.Size * 0.5f);
+            Vector2 r1Max = r1.Position + (r1.Size * 0.5f);
+            Vector2 r2Min = r2.Position - (r2.Size * 0.5f);
+            Vector2 r2Max = r2.Position + (r2.Size * 0.5f);
 
             return r1Min.X < r2Max.X && r1Max.X > r2Min.X &&
                    r1Min.Y < r2Max.Y && r1Max.Y > r2Min.Y;
@@ -312,8 +312,8 @@ namespace SDNGame.Physics
 
         private static bool CircleVsRectangle(Collider circle, Collider rect)
         {
-            Vector2 rectMin = rect.Position - rect.Size * 0.5f;
-            Vector2 rectMax = rect.Position + rect.Size * 0.5f;
+            Vector2 rectMin = rect.Position - (rect.Size * 0.5f);
+            Vector2 rectMax = rect.Position + (rect.Size * 0.5f);
             float closestX = Math.Clamp(circle.Position.X, rectMin.X, rectMax.X);
             float closestY = Math.Clamp(circle.Position.Y, rectMin.Y, rectMax.Y);
             float distance = Vector2.Distance(circle.Position, new Vector2(closestX, closestY));
@@ -404,10 +404,10 @@ namespace SDNGame.Physics
         {
             Vector2 a = l1.Position, b = l1.EndPoint;
             Vector2 c = l2.Position, d = l2.EndPoint;
-            float denominator = (b.X - a.X) * (d.Y - c.Y) - (b.Y - a.Y) * (d.X - c.X);
+            float denominator = ((b.X - a.X) * (d.Y - c.Y)) - ((b.Y - a.Y) * (d.X - c.X));
             if (Math.Abs(denominator) < float.Epsilon) return false; // Parallel lines
-            float t = ((c.X - a.X) * (d.Y - c.Y) - (c.Y - a.Y) * (d.X - c.X)) / denominator;
-            float u = ((c.X - a.X) * (b.Y - a.Y) - (c.Y - a.Y) * (b.X - a.X)) / denominator;
+            float t = (((c.X - a.X) * (d.Y - c.Y)) - ((c.Y - a.Y) * (d.X - c.X))) / denominator;
+            float u = (((c.X - a.X) * (b.Y - a.Y)) - ((c.Y - a.Y) * (b.X - a.X))) / denominator;
             return t >= 0 && t <= 1 && u >= 0 && u <= 1;
         }
 
@@ -428,7 +428,7 @@ namespace SDNGame.Physics
             Vector2 ab = b - a;
             float t = Vector2.Dot(ap, ab) / Vector2.Dot(ab, ab);
             t = Math.Clamp(t, 0f, 1f);
-            return a + t * ab;
+            return a + (t * ab);
         }
 
         private static Vector2 ClosestPointOnPolygon(Vector2 point, Vector2[] vertices)
@@ -581,8 +581,8 @@ namespace SDNGame.Physics
             for (int i = 0, j = vertexCount - 1; i < vertexCount; j = i++)
             {
                 if (((vertices[i].Y > point.Y) != (vertices[j].Y > point.Y)) &&
-                    (point.X < (vertices[j].X - vertices[i].X) * (point.Y - vertices[i].Y) /
-                    (vertices[j].Y - vertices[i].Y) + vertices[i].X))
+                    (point.X < ((vertices[j].X - vertices[i].X) * (point.Y - vertices[i].Y) /
+                    (vertices[j].Y - vertices[i].Y)) + vertices[i].X))
                 {
                     inside = !inside;
                 }
