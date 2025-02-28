@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using SDNGame.Core;
 using SDNGame.Rendering.Fonts;
 using SDNGame.Rendering.Shapes;
@@ -58,12 +58,12 @@ namespace SDNGame.UI
             float buttonSpacing = 10f;
 
             // Calculate total size
-            float totalButtonsWidth = buttons.Length * buttonWidth + (buttons.Length - 1) * buttonSpacing;
+            float totalButtonsWidth = (buttons.Length * buttonWidth) + ((buttons.Length - 1) * buttonSpacing);
             Size = new Vector2(
-                Math.Max(Math.Max(titleSize.X, messageSize.X), totalButtonsWidth) + Padding * 2,
-                titleSize.Y + messageSize.Y + buttonHeight + Padding * 3 + (hasCloseButton ? buttonHeight + Padding : 0)
+                Math.Max(Math.Max(titleSize.X, messageSize.X), totalButtonsWidth) + (Padding * 2),
+                titleSize.Y + messageSize.Y + buttonHeight + (Padding * 3) + (hasCloseButton ? buttonHeight + Padding : 0)
             );
-            Position = position - Size / 2;
+            Position = position - (Size / 2);
 
             // Initialize labels
             _titleLabel = new Label(_fontRenderer, Vector2.Zero, title, titleStyle);
@@ -71,7 +71,7 @@ namespace SDNGame.UI
 
             // Create buttons with relative offsets
             Vector2 buttonStartPos = new Vector2(
-                Size.X / 2 - totalButtonsWidth / 2,
+                (Size.X / 2) - (totalButtonsWidth / 2),
                 Size.Y - buttonHeight - Padding
             );
             for (int i = 0; i < buttons.Length; i++)
@@ -137,7 +137,7 @@ namespace SDNGame.UI
 
             // Apply animation transform
             Vector2 scaledSize = Size * _scale;
-            Vector2 scaledPosition = Position + (Size - scaledSize) / 2;
+            Vector2 scaledPosition = Position + ((Size - scaledSize) / 2);
 
             // Draw container background (new solid background for the message box)
             shapeRenderer.DrawRectangle(
@@ -168,7 +168,7 @@ namespace SDNGame.UI
             if (!Visible) return;
 
             Vector2 scaledSize = Size * _scale;
-            Vector2 scaledPosition = Position + (Size - scaledSize) / 2;
+            Vector2 scaledPosition = Position + ((Size - scaledSize) / 2);
 
             // Update label positions
             _titleLabel.Position = scaledPosition + new Vector2(Padding, Padding);
@@ -197,7 +197,7 @@ namespace SDNGame.UI
                 _animationTime += (float)deltaTime;
                 float t = Math.Clamp(_animationTime / AnimationDuration, 0f, 1f);
                 _alpha = Utils.Tween.EaseOutQuad(t);
-                _scale = 0.8f + Utils.Tween.EaseOutQuad(t) * 0.2f;
+                _scale = 0.8f + (Utils.Tween.EaseOutQuad(t) * 0.2f);
                 if (t >= 1f) _isAnimatingIn = false;
             }
         }
