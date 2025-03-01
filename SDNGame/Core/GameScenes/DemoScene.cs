@@ -29,6 +29,9 @@ namespace SDNGame.Core.GameScenes
         private bool showBoundingBoxes = true;
         private bool useFilledShapes = true;
         private float rotationAngle = 0f;
+        private Dictionary<Key, bool> keyStates = new Dictionary<Key, bool>();
+        private double keyCooldown = 0.2;
+        private Dictionary<Key, double> keyTimers = new Dictionary<Key, double>();
 
         public DemoScene(Game game) : base(game)
         {
@@ -81,8 +84,8 @@ namespace SDNGame.Core.GameScenes
                 buttonStyle);
             backButton.OnClick += () =>
             {
-                var outgoing = new ZoomAndRotateTransition(Game, 0.6f, false, 1f, 2f, 0f, 0.1f);
-                var incoming = new ZoomAndRotateTransition(Game, 0.6f, true, 1f, 2f, 0f, -0.1f);
+                var outgoing = new ZoomAndRotateTransition(Game, 1f, false, 1f, 2f, 0f, 0.1f);
+                var incoming = new ZoomAndRotateTransition(Game, 1f, true, 1f, 2f, 0f, -0.1f);
                 Game.SetScene(new MainMenuScene(Game), outgoing, incoming);
             };
             uiManager.AddElement(backButton);
@@ -167,9 +170,9 @@ namespace SDNGame.Core.GameScenes
             UpdateMouseColliderShape();
             rotationAngle += (float)deltaTime * 0.5f;
 
-            HandleShapeSwitching();
+            HandleShapeSwitching(deltaTime);
             HandleDragging();
-            HandleToggles();
+            HandleToggles(deltaTime);
 
             for (int i = 0; i < testColliders.Count; i++)
             {
@@ -182,14 +185,74 @@ namespace SDNGame.Core.GameScenes
             base.Update(deltaTime); // Updates UI elements
         }
 
-        private void HandleShapeSwitching()
+        private void HandleShapeSwitching(double deltaTime)
         {
             for (int i = 0; i < shapeNames.Length; i++)
             {
-                if (InputManager.IsKeyPressed((Key)((int)Key.Number1 + i)))
+                Key key = (Key)((int)Key.Number1 + i);
+
+                if (InputManager.IsKeyPressed(key))
                 {
-                    currentCursorShapeIndex = i;
-                    UpdateMouseColliderShape();
+                    if (!keyStates.ContainsKey(key) || !keyStates[key])
+                    {
+                        currentCursorShapeIndex = i;
+                        UpdateMouseColliderShape();
+                        keyStates[key] = true;
+                        keyTimers[key] = keyCooldown;
+                    }
+                }
+                else
+                {
+                    keyStates[key] = false;
+                }
+            }
+
+            foreach (var key in keyTimers.Keys.ToList())
+            {
+                keyTimers[key] -= deltaTime;
+                if (keyTimers[key] <= 0)
+                {
+                    keyTimers.Remove(key);
+                }
+            }
+        }
+
+        private void HandleToggles(double deltaTime)
+        {
+            if (InputManager.IsKeyPressed(Key.B))
+            {
+                if (!keyStates.ContainsKey(Key.B) || !keyStates[Key.B])
+                {
+                    showBoundingBoxes = !showBoundingBoxes;
+                    keyStates[Key.B] = true;
+                    keyTimers[Key.B] = keyCooldown;
+                }
+            }
+            else
+            {
+                keyStates[Key.B] = false;
+            }
+
+            if (InputManager.IsKeyPressed(Key.F))
+            {
+                if (!keyStates.ContainsKey(Key.F) || !keyStates[Key.F])
+                {
+                    useFilledShapes = !useFilledShapes;
+                    keyStates[Key.F] = true;
+                    keyTimers[Key.F] = keyCooldown;
+                }
+            }
+            else
+            {
+                keyStates[Key.F] = false;
+            }
+
+            foreach (var key in keyTimers.Keys.ToList())
+            {
+                keyTimers[key] -= deltaTime;
+                if (keyTimers[key] <= 0)
+                {
+                    keyTimers.Remove(key);
                 }
             }
         }
