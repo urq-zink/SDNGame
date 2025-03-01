@@ -6,9 +6,9 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/urq-zink/sdngame/badge?s=ec6547ef52ba800c0c60085d036f59d22c44ea5d)](https://www.codefactor.io/repository/github/urq-zink/sdngame)
 
-**SDNGame** is a lightweight and flexible 2D game framework built with C# and powered by **Silk.NET** for OpenGL rendering, input handling, and windowing—because who wants to write all that boilerplate code themselves?  
+**SDNGame** is a lightweight and flexible 2D game framework built with C# and powered by **Silk.NET** for OpenGL rendering, input handling, and windowing.
 
-Designed for rapid prototyping and development, it comes with a modular structure and built-in support for sprites, shapes, audio, UI, physics, and scene management. Whether you're whipping up a quick demo or crafting the next indie masterpiece, **SDNGame** has your back—so you can spend less time fighting your engine and more time making awesome games.
+Designed for rapid game prototyping.
 
 ## Feature
 - **Rendering**: Sprite batches, shape rendering, and font support via OpenGL.
