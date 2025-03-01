@@ -122,10 +122,19 @@ SDNGame/
 ## Contributing
 ### Contributions are welcome! To contribute:
 1. Fork the repository
-2. Create a feature branch (git checkout -b feature/my-feature).
-3. Commit your changes (git commit -m "Add my feature").
-4. Push to your branch (git push origin feature/my-feature).
-5. Open a pull request
+2. Create a feature branch
+```bash
+git checkout -b feature/my-feature
+```
+3. Commit your changes
+```bash
+git commit -m "Add my feature").
+```
+4. Push to your branch
+```bash
+git push origin feature/my-feature).
+```
+6. Open a pull request
 
 ### Please ensure your code follows the existing style and includes appropriate comments
 
