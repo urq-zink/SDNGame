@@ -128,11 +128,11 @@ git checkout -b feature/my-feature
 ```
 3. Commit your changes
 ```bash
-git commit -m "Add my feature").
+git commit -m "Add my feature"
 ```
 4. Push to your branch
 ```bash
-git push origin feature/my-feature).
+git push origin feature/my-feature
 ```
 6. Open a pull request
 
@@ -142,4 +142,4 @@ git push origin feature/my-feature).
 ### This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## 
-Built with ❤️ by [zink-urq]
+Built with bugs & ❤ by **zink-urq**
