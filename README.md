@@ -21,7 +21,9 @@ Designed for rapid game prototyping.
 - **Scene Management**: Seamless transitions (fade, zoom, rotate) between game scenes.
 - **Camera**: 2D camera system with position, rotation, and zoom.
 - **Utilities**: Tweening functions, timers, and serialization support.
-
+## Todo
+- **Transition**: Stackable transition effect. More transition effect.
+- **Collision**: Fix polygon collider issues.
 ## Installation
 ### Prerequisites
 - [.NET SDK](https://dotnet.microsoft.com/download) (version 8.0 or later recommended)
