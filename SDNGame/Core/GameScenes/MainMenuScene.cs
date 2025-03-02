@@ -92,10 +92,23 @@ namespace SDNGame.Core.GameScenes
                 Game.SetScene(new MessageBoxDemoScene(Game), outgoing, incoming);
             };
 
+            var softBodyButton = new Button(fontRenderer,
+                new Vector2(centerX - buttonWidth / 2, startY + spacing * 4),
+                new Vector2(buttonWidth, buttonHeight),
+                "Soft Body Sim",
+                buttonStyle);
+            softBodyButton.OnClick += () =>
+            {
+                var outgoing = new FadeTransition(Game, 0.5f, false);
+                var incoming = new FadeTransition(Game, 0.5f, true);
+                Game.SetScene(new SoftBodyScene(Game), outgoing, incoming);
+            };
+
             uiManager.AddElement(collisionDemoButton);
             uiManager.AddElement(circleHuntButton);
             uiManager.AddElement(textureDemoButton);
             uiManager.AddElement(messageBoxDemoButton);
+            uiManager.AddElement(softBodyButton);
         }
 
         public override void Update(double deltaTime)
